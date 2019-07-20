@@ -308,12 +308,6 @@ class GcodeManager:
 
 if __name__=='__main__':
   GM=GcodeManager()
-  #GM.read("Sample.gcode")
-  #GM.read("PortePortable.gcode")
-  #GM.read("Badge_NG7F949.gcode")
-  #GM.read("PortePortable20pc.gcode")
-  #GM.read("Badge_Crapo.gcode")
-  #GM.read("Badge_NG7F949_v4.gcode")
   GM.read("Crapolat_Prototype_3-0.gcode")
   #GM.offset(4.99+0.1)
   GM.offset(4.99+0.1)
