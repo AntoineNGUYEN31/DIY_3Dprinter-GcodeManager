@@ -247,7 +247,7 @@ class GcodeManager:
     for line in self.data_new:
       if line.type=="data":
         try:
-            line.value['E']=line.value['E']*coef
+          line.value['E']=line.value['E']*coef
         except:
           pass
     
@@ -305,48 +305,9 @@ class GcodeManager:
     for line in self.data_new:
       f.write(line.toString(self.ff)+"\n")
     f.close()
-"""
-def leveling(Xmin,Xmax,Ymin,Ymax,Zmin,scheme=5):
-  #scheme can have as value:
-  # 4 => 4 corner
-  # 5 => 4 corner + center
-  # 9 => matrix 3x3
-  # 16 => matrix 4x4
-  X=[]
-  Y=[]
-  if scheme == 5:
-    X=[Xmin,Xmin,(Xmax+Xmin)/2.,Xmax,Xmax]
-    Y=[Ymin,Ymax,(Ymax+Ymin)/2.,Ymin,Ymax]
-  else:
-    N=int(scheme**.5)
-    for i in range(N):
-      for j in range(N):
-        X.append((Xmax-Xmin)/float(N-1)*i+Xmin)
-        Y.append((Ymax-Ymin)/float(N-1)*j+Ymin)
-  f=open("calib.gcode",'w')
-  f.write(";X= %3.0f -> %3.0f\n"%(Xmin,Xmax))
-  f.write(";Y= %3.0f -> %3.0f\n"%(Ymin,Ymax))
-  f.write(";Z min  =  %3.0f\n"%(Zmin))
-  f.write(";Scheme = %d points\n"%(scheme))
-  f.write("G0 Z50;set safe height\n")
-  f.write("G90;set to absolute\n")
-  for i in range(len(X)):
-    f.write("G0 Z20;set safe height\n")
-    f.write("G0 X%.3f Y%.3f\n"%(X[i],Y[i]))
-    f.write("G1 Z%.3f\n"%(Zmin))
-    f.write("M0 NextPoint\n")
-  f.write("G0 Z50;set safe height\n")  
-  f.write("G0 X0 Y0\n")
-  f.write("G28;goto home\n")
-  f.close()
-"""
+
 if __name__=='__main__':
   GM=GcodeManager()
-  """
-  GM.read("PortePortable.gcode")
-  GM.correct("local_ite8.gcode")
-  GM.offset(0.1)
-  """
   #GM.read("Sample.gcode")
   #GM.read("PortePortable.gcode")
   #GM.read("Badge_NG7F949.gcode")
